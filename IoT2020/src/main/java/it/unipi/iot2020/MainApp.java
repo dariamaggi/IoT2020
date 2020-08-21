@@ -6,15 +6,26 @@
 package it.unipi.iot2020;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner; 
-
+/*
+import org.eclipse.californium.core.CoapClient;
+import org.eclipse.californium.core.CoapResponse;
+import org.eclipse.californium.core.coap.MediaTypeRegistry;
+*/
 /**
  *
  * @author dariamargheritamaggi
  */
 public class MainApp {
         	public static final String[] commands = {"humidity","help","exit","start dehumidifier", "stop dehumidifier", "start cooling", "stop cooling", "temperature"};
-
+        
+	//public static ArrayList<CoapObserverClient> coapObserverClients = new ArrayList<CoapObserverClient>();
+	public static ArrayList<HumiditySensor> humiditySensors = new ArrayList<HumiditySensor>();
+	public static ArrayList<TemperatureSensor> temperatureSensors = new ArrayList<TemperatureSensor>();
+        public static ArrayList<Dehumidifier> dehumidifiers= new ArrayList<Dehumidifier>();
+        public static ArrayList<Cooling> coolers = new ArrayList<Cooling>();
+        
 	public static void main(String[] args) throws IOException, InterruptedException {
                 help();
 		//runServer();
@@ -43,6 +54,9 @@ public class MainApp {
                                         System.out.println("Dehumidifier stopped");
                                         System.out.println("TODO: get current humidity level");
                                         break;
+                                     case "temperature":
+                                        System.out.println("TODO: get current temperature level");
+                                        break;
                                     case "humidity":
                                         System.out.println("TODO: get current humidity level");
                                         break;
@@ -70,8 +84,8 @@ public class MainApp {
             System.out.println("");
 	    System.out.println("Type one of the following and press enter to continue:");
             System.out.println("");
-            System.out.println("\t"+commands[0]+" -  get current humidity value");
-            System.out.println("\t"+commands[7]+" -  get current temperature value");            
+            System.out.println("\t"+commands[0]+" - get current humidity value");
+            System.out.println("\t"+commands[7]+" - get current temperature value");            
             System.out.println("\t"+commands[3]+" - start the dehumidifier (if not already active)");            
             System.out.println("\t"+commands[4]+" - stop the dehumidifier (if not already idle)");
             System.out.println("\t"+commands[5]+" - start the cooling system (if not already active)");            

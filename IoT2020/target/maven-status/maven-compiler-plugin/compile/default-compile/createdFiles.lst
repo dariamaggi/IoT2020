@@ -1,1 +1,8 @@
+it/unipi/iot2020/Cooling.class
+it/unipi/iot2020/Dehumidifier.class
+it/unipi/iot2020/ServerResource.class
+it/unipi/iot2020/RegistrationResources.class
+it/unipi/iot2020/Node.class
+it/unipi/iot2020/HumiditySensor.class
+it/unipi/iot2020/TemperatureSensor.class
 it/unipi/iot2020/MainApp.class
