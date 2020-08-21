@@ -7,6 +7,13 @@ package it.unipi.iot2020;
 
 import java.util.ArrayList;
 
+import org.eclipse.californium.core.CoapClient;
+import org.eclipse.californium.core.CoapHandler;
+import org.eclipse.californium.core.CoapObserveRelation;
+import org.eclipse.californium.core.CoapResponse;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.ParseException;
 /**
  *
  * @author dariamargheritamaggi
@@ -16,7 +23,7 @@ public class CoapObserverTemperature {//extends CoapClient
     CoapObserveRelation coapObserveRelation;
     
     public CoapObserverClient(TemperatureSensor sensor) {
-		//super(humidityResource.getResourceURI());
+		super(humidityResource.getResourceURI());
 		this.sensor = sensor;
 	}
     public void startObserving() {
