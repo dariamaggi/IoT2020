@@ -227,4 +227,12 @@ public class MainApp {
 		sensor.setActive(status);
                 return true;
         }
+        public static void runServer() {
+		new Thread() {
+			public void run() {
+				ServerResource server = new ServerResource();
+				server.startServer();
+			}
+		}.start();
+	}
         }
