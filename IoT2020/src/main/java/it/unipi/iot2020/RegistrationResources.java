@@ -7,22 +7,21 @@ package it.unipi.iot2020;
 
 import java.net.InetAddress;
 
-/*
 
 
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResource;
 import org.eclipse.californium.core.CoapResponse;
 import org.eclipse.californium.core.server.resources.CoapExchange;
-*/
+
 
 /**
  *
  * @author dariamargheritamaggi
  */
-public class RegistrationResources { //extends CoapResource
+public class RegistrationResources extends CoapResource { //extends CoapResource
     public RegistrationResources(String name) {
-		//super(name);
+		super(name);
 	}
     
     public void handleGET(CoapExchange exchange) {
@@ -79,11 +78,11 @@ public class RegistrationResources { //extends CoapResource
     
     }
     private static void observeHumidity(HumiditySensor humiditySensor) {
-		//MainApp.coapObserverClients.add(new CoapObserverClient(humidityResource));
-		//MainApp.coapObserverClients.get(MainApp.coapObserverClients.size() - 1).startObserving();
+		MainApp.coapObserverClients.add(new CoapObserverClient(humidityResource));
+		MainApp.coapObserverClients.get(MainApp.coapObserverClients.size() - 1).startObserving();
 	}
     private static void observeTemperature(TemperatureSensor temperatureSensor) {
-		//MainApp.coapObserverClients.add(new CoapObserverClient(humidityResource));
-		//MainApp.coapObserverClients.get(MainApp.coapObserverClients.size() - 1).startObserving();
+		MainApp.coapObserverClients.add(new CoapObserverClient(humidityResource));
+		MainApp.coapObserverClients.get(MainApp.coapObserverClients.size() - 1).startObserving();
 	}
 }

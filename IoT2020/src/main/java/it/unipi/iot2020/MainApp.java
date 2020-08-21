@@ -8,11 +8,11 @@ package it.unipi.iot2020;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner; 
-/*
+
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResponse;
 import org.eclipse.californium.core.coap.MediaTypeRegistry;
-*/
+
 /**
  *
  * @author dariamargheritamaggi
@@ -30,7 +30,7 @@ public class MainApp {
 	public static void main(String[] args) throws IOException, InterruptedException {
                 help();
                 int index;
-		//runServer();
+		runServer();
 		while (true) {
 			try {
                                  Scanner myObj = new Scanner(System.in);  
