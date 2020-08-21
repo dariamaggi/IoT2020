@@ -29,6 +29,7 @@ public class MainApp {
         
 	public static void main(String[] args) throws IOException, InterruptedException {
                 help();
+                int index;
 		//runServer();
 		while (true) {
 			try {
@@ -51,11 +52,11 @@ public class MainApp {
                                     case "start cooling":
                                         listCoolingSystems();
 
-                                        int nindex=new Scanner(System.in).nextInt();
-                                        if (nindex>=0 && nindex<=humiditySensors.size()){
-                                            Boolean status=coolers.get(nindex).checkActive();
+                                        index=new Scanner(System.in).nextInt();
+                                        if (index>=0 && index<=humiditySensors.size()){
+                                            Boolean status=coolers.get(index).checkActive();
                                             if(!status){
-                                                Boolean result=changeCoolerStatus(coolers.get(nindex),"active",true);
+                                                Boolean result=changeCoolerStatus(coolers.get(index),"active",true);
                                                 System.out.println(result?"Cooling system activated":"Attention! Cooling system not activated");
                                             }
                                             else
@@ -65,11 +66,11 @@ public class MainApp {
                                     case "stop cooling":
                                         listCoolingSystems();
 
-                                        int mindex=new Scanner(System.in).nextInt();
-                                        if (mindex>=0 && mindex<=coolers.size()){
-                                            Boolean status=coolers.get(mindex).checkActive();
+                                        index=new Scanner(System.in).nextInt();
+                                        if (index>=0 && index<=coolers.size()){
+                                            Boolean status=coolers.get(index).checkActive();
                                             if(!status){
-                                                Boolean result=changeCoolerStatus(coolers.get(mindex),"non active",false);
+                                                Boolean result=changeCoolerStatus(coolers.get(index),"non active",false);
                                                 System.out.println(result?"Cooling system disactivated":"Attention! Cooling system not disactivated");
                                             }
                                             else
@@ -78,11 +79,11 @@ public class MainApp {
                                         break;
                                     case "start dehumidifier":
                                         listDehumidifiers();
-                                        int d_index=new Scanner(System.in).nextInt();
-                                        if (d_index>=0 && d_index<=dehumidifiers.size()){
-                                            Boolean status=dehumidifiers.get(d_index).checkActive();
+                                        index=new Scanner(System.in).nextInt();
+                                        if (index>=0 && index<=dehumidifiers.size()){
+                                            Boolean status=dehumidifiers.get(index).checkActive();
                                             if(!status){
-                                                Boolean result=changeDehumidifierStatus(dehumidifiers.get(d_index),"active",true);
+                                                Boolean result=changeDehumidifierStatus(dehumidifiers.get(index),"active",true);
                                                 System.out.println(result?"Cooling system activated":"Attention! Cooling system not activated");
                                             }
                                             else
@@ -92,11 +93,11 @@ public class MainApp {
 
                                     case "stop dehumidifier":
                                         listDehumidifiers();
-                                        int i_index=new Scanner(System.in).nextInt();
-                                        if (i_index>=0 && i_index<=dehumidifiers.size()){
-                                            Boolean status=dehumidifiers.get(i_index).checkActive();
+                                        index=new Scanner(System.in).nextInt();
+                                        if (index>=0 && index<=dehumidifiers.size()){
+                                            Boolean status=dehumidifiers.get(index).checkActive();
                                             if(!status){
-                                                Boolean result=changeDehumidifierStatus(dehumidifiers.get(i_index),"non active",false);
+                                                Boolean result=changeDehumidifierStatus(dehumidifiers.get(index),"non active",false);
                                                 System.out.println(result?"Cooling system disactivated":"Attention! Cooling system not disactivated");
                                             }
                                             else
@@ -186,9 +187,11 @@ public class MainApp {
 
         }
         public static void listDehumidifiers(){
-            for (int i = 0; i < humiditySensors.size(); i++) {
-                HumiditySensor sensor = humiditySensors.get(i);
-                System.out.println(i + "\t\tDehumidifier: " + sensor.getAddress() + " " + sensor.getPath());
+            for (int i = 0; i < dehumidifiers.size(); i++) {
+                Dehumidifier sensor = dehumidifiers.get(i);
+                String status= sensor.checkActive()?"active":"not active";
+
+                System.out.println(i + "\t\tDehumidifier: " + sensor.getAddress() + " " + sensor.getPath()+" "+ status +"\n");
             }
         }
         public static void listCoolingSystems(){
