@@ -34,7 +34,7 @@ public class CoapObserverTemperature extends CoapClient {
 					JSONObject jo = (JSONObject) JSONValue.parseWithException(response.getResponseText());
 					Integer index;
 	
-					if (jo.containsKey("temperature")) {
+					if (jo.containsKey("tempe rature")) {
 						value = jo.get("temperature").toString();
 						Double numericValue = Double.parseDouble(value.trim());
 	

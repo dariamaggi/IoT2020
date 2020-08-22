@@ -20,12 +20,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
-public class CoapObserverHumidity {//extends CoapClient 
+public class CoapObserverHumidity extends CoapClient {
     private HumiditySensor sensor;
     CoapObserveRelation coapObserveRelation;
     
     public CoapObserverHumidity(HumiditySensor humidityResource) {
-		//super(sensor.getResourceURI());   //gets the URI
+		super(sensor.getResourceURI());  
 		this.sensor = humidityResource;
 	}
     public void startObserving() {

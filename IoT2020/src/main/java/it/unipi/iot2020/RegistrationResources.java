@@ -19,7 +19,7 @@ import org.eclipse.californium.core.server.resources.CoapExchange;
  *
  * @author dariamargheritamaggi
  */
-public class RegistrationResources extends CoapResource { //extends CoapResource
+public class RegistrationResources extends CoapResource { 
     public RegistrationResources(String name) {
 		super(name);
 	}
@@ -78,11 +78,11 @@ public class RegistrationResources extends CoapResource { //extends CoapResource
     
     }
     private static void observeHumidity(HumiditySensor humiditySensor) {
-		MainApp.coapObserverClients.add(new CoapObserverClient(humidityResource));
+		MainApp.coapObserverClients.add(new CoapObserverClient(humiditySensor));
 		MainApp.coapObserverClients.get(MainApp.coapObserverClients.size() - 1).startObserving();
 	}
     private static void observeTemperature(TemperatureSensor temperatureSensor) {
-		MainApp.coapObserverClients.add(new CoapObserverClient(humidityResource));
+		MainApp.coapObserverClients.add(new CoapObserverClient(temperatureSensor));
 		MainApp.coapObserverClients.get(MainApp.coapObserverClients.size() - 1).startObserving();
 	}
 }

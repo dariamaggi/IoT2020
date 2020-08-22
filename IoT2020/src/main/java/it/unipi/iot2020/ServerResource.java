@@ -11,7 +11,7 @@ import org.eclipse.californium.core.CoapServer;
  * @author dariamargheritamaggi
  */
 
-public class ServerResource  { //extends CoapServer
+public class ServerResource extends CoapServer { 
 
 	public void startServer() {
 		System.out.println("Server started...");
