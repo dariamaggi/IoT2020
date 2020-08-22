@@ -25,7 +25,7 @@ public class CoapObserverHumidity extends CoapClient {
     CoapObserveRelation coapObserveRelation;
     
     public CoapObserverHumidity(HumiditySensor humidityResource) {
-		super(sensor.getResourceURI());  
+		super(sensor.getNodeURI());  
 		this.sensor = humidityResource;
 	}
     public void startObserving() {

@@ -23,7 +23,7 @@ public class CoapObserverTemperature extends CoapClient {
     CoapObserveRelation coapObserveRelation;
     
     public CoapObserverTemperature(TemperatureSensor sensor) {
-		super(humidityResource.getResourceURI());
+		super(humidityResource.getNodeURI());
 		this.sensor= sensor;
 	}
     public void startObserving() {
