@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 import org.eclipse.californium.core.CoapClient;
-import org.eclipse.californium.core.CoapHandler;
+	import org.eclipse.californium.core.CoapHandler;
 import org.eclipse.californium.core.CoapObserveRelation;
 import org.eclipse.californium.core.CoapResponse;
 import org.json.simple.JSONObject;
@@ -34,8 +34,8 @@ public class CoapObserverHumidity extends CoapClient {
 				try {
 					String value;
 					JSONObject jo = (JSONObject) JSONValue.parseWithException(response.getResponseText());
-					int index;
-                                         int humidityThreshold=50;
+					Integer index;
+                    Integer humidityThreshold=50;
 	
 					if (jo.containsKey("humidity")) {
 						value = jo.get("humidity").toString();

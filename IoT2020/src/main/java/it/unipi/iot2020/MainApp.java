@@ -198,7 +198,7 @@ public class MainApp {
         public static void listCoolingSystems(){
             for (int i = 0; i < coolers.size(); i++) {
                 Cooling sensor = coolers.get(i);
-                String status= sensor.checkActive()?"active":"not active";
+                String status = sensor.checkActive()?"active":"not active";
                 System.out.println(i + "\t\tCooling System: " + sensor.getAddress() + " "
                                                 + sensor.getPath() +" "+ status +"\n");
 

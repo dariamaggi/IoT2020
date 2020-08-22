@@ -14,12 +14,12 @@ public class Dehumidifier extends Node {
     
     public Dehumidifier(String nodePath, String nodeAddress){
         super(nodePath, nodeAddress);
-        this.isActive=false; //by default it is OFF
+        this.isActive = false; //by default it is OFF
     }
     public Boolean checkActive(){ //checks whether dehumidifier already working
         return this.isActive;
     }
     public void setActive(Boolean isActive){
-        this.isActive=isActive;
+        this.isActive = isActive;
     }
 }

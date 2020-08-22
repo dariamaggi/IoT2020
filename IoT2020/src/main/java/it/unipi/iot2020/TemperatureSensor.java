@@ -30,7 +30,6 @@ public class TemperatureSensor extends Node{
         }
         
         public Boolean gapDetected(Double newestValue){
-          
            return (newestValue-Double.parseDouble(temperature.get(1))>0.25)?true:false; 
         }
         public void setTemperatureValues(ArrayList<String> list) {

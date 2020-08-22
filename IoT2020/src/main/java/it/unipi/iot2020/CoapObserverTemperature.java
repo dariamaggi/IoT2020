@@ -24,7 +24,7 @@ public class CoapObserverTemperature extends CoapClient {
     
     public CoapObserverTemperature(TemperatureSensor sensor) {
 		super(humidityResource.getResourceURI());
-		this.sensor = sensor;
+		this.sensor= sensor;
 	}
     public void startObserving() {
 		coapObserveRelation = this.observe(new CoapHandler () {
@@ -34,7 +34,7 @@ public class CoapObserverTemperature extends CoapClient {
 					JSONObject jo = (JSONObject) JSONValue.parseWithException(response.getResponseText());
 					Integer index;
 	
-					if (jo.containsKey("tempe rature")) {
+					if (jo.containsKey("temperature")) {
 						value = jo.get("temperature").toString();
 						Double numericValue = Double.parseDouble(value.trim());
 	
@@ -54,11 +54,10 @@ public class CoapObserverTemperature extends CoapClient {
 	
 					ArrayList<String> resourceValues = sensor.getTemperature();
 					resourceValues.add(value);
-                                         resourceValues.remove(0); //get out oldest value
-                                    ,
+                    resourceValues.remove(0); //get out oldest value
 					MainApp.temperatureSensors.get(MainApp.temperatureSensors.indexOf(sensor))
 							.setTemperatureValues(resourceValues);
-	
+
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}

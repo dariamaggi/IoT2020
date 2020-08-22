@@ -14,7 +14,7 @@ public class Cooling extends Node{
     
     public Cooling(String nodePath, String nodeAddress){
         super(nodePath, nodeAddress);
-        this.isActive=false;
+        this.isActive = false;
     }
     
     public Boolean checkActive(){ //checks whether dehumidifier already working
@@ -22,7 +22,7 @@ public class Cooling extends Node{
     }
     
     public void setActive(Boolean isActive){
-        this.isActive=isActive;
+        this.isActive = isActive;
     }
     
 }
