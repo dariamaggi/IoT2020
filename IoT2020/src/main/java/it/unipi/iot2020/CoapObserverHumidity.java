@@ -34,13 +34,14 @@ public class CoapObserverHumidity {//extends CoapClient
 				try {
 					String value;
 					JSONObject jo = (JSONObject) JSONValue.parseWithException(response.getResponseText());
-					Integer lowerThreshold = 10, upperThreshold = 30, index;
+					int index;
+                                         int humidityThreshold=50;
 	
 					if (jo.containsKey("humidity")) {
 						value = jo.get("humidity").toString();
 						Integer numericValue = Integer.parseInt(value.trim());
 	
-						if (numericValue > upperThreshold) {
+						if (numericValue > humidityThreshold) {
 							index = MainApp.humiditySensors.indexOf(sensor);
 							Dehumidifier dehumidifierInst = MainApp.dehumidifiers.get(index);
 							

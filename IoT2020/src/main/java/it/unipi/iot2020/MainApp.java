@@ -49,9 +49,9 @@ public class MainApp {
                                         listDehumidifiers();
                                         
 		                        break;
+                                        
                                     case "start cooling":
                                         listCoolingSystems();
-
                                         index=new Scanner(System.in).nextInt();
                                         if (index>=0 && index<=humiditySensors.size()){
                                             Boolean status=coolers.get(index).checkActive();
@@ -63,6 +63,7 @@ public class MainApp {
                                                 System.out.println("Sensor is already active!");
                                         }
                                         break;
+                                        
                                     case "stop cooling":
                                         listCoolingSystems();
 

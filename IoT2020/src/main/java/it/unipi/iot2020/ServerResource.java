@@ -15,7 +15,7 @@ public class ServerResource  { //extends CoapServer
 
 	public void startServer() {
 		System.out.println("Server started...");
-		this.add(new RegistrationResource("registration"));
+		this.add(new RegistrationResources("registration"));
 		this.start();
 	}
 }

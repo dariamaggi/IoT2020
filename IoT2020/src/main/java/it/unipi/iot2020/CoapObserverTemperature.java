@@ -18,11 +18,11 @@ import org.json.simple.parser.ParseException;
  *
  * @author dariamargheritamaggi
  */
-public class CoapObserverTemperature {//extends CoapClient
+public class CoapObserverTemperature extends CoapClient {
     private TemperatureSensor sensor;
     CoapObserveRelation coapObserveRelation;
     
-    public CoapObserverClient(TemperatureSensor sensor) {
+    public CoapObserverTemperature(TemperatureSensor sensor) {
 		super(humidityResource.getResourceURI());
 		this.sensor = sensor;
 	}
@@ -32,7 +32,7 @@ public class CoapObserverTemperature {//extends CoapClient
 				try {
 					String value;
 					JSONObject jo = (JSONObject) JSONValue.parseWithException(response.getResponseText());
-					Integer lowerThreshold = 10, upperThreshold = 30, index;
+					Integer index;
 	
 					if (jo.containsKey("temperature")) {
 						value = jo.get("temperature").toString();
