@@ -34,7 +34,7 @@ public class Node {
 		this.nodeAddress = address;
 	}
 
-	public String getResourceURI() {
+	public String getNodeURI() {
 		return "coap://[" + this.nodeAddress + "]:5683/" + this.nodePath;
 	}
 }

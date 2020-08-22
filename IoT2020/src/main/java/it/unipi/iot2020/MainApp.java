@@ -23,14 +23,15 @@ public class MainApp {
         
 	public static ArrayList<CoapObserverHumidity> coapObserverHumidity = new ArrayList<CoapObserverHumidity>();
 	public static ArrayList<CoapObserverTemperature> coapObserverTemperature= new ArrayList<CoapObserverTemperature>();        
-	public static ArrayList<HumiditySensor> humiditySensors = new ArrayList<HumiditySensor>();
+	
+    public static ArrayList<HumiditySensor> humiditySensors = new ArrayList<HumiditySensor>();
 	public static ArrayList<TemperatureSensor> temperatureSensors = new ArrayList<TemperatureSensor>();
-        public static ArrayList<Dehumidifier> dehumidifiers= new ArrayList<Dehumidifier>();
-        public static ArrayList<Cooling> coolers = new ArrayList<Cooling>();
+    public static ArrayList<Dehumidifier> dehumidifiers= new ArrayList<Dehumidifier>();
+    public static ArrayList<Cooling> coolers = new ArrayList<Cooling>();
         
 	public static void main(String[] args) throws IOException, InterruptedException {
-                help();
-                int index;
+        help();
+        Integer index;
 		runServer();
 		while (true) {
 			try {
@@ -231,7 +232,7 @@ public class MainApp {
         	}
 
         public static Boolean changeCoolerStatus(Cooling sensor, String state, Boolean status){
-            CoapClient client = new CoapClient(sensor.getResourceURI());
+            CoapClient client = new CoapClient(sensor.getNodeURI());
             CoapResponse response = client.post("state=" + state, MediaTypeRegistry.TEXT_PLAIN);
             String code = response.getCode().toString();
             if (!code.startsWith("2")) {
@@ -243,7 +244,7 @@ public class MainApp {
         }
 
         public static Boolean changeDehumidifierStatus(Dehumidifier sensor, String state, Boolean status){
-            CoapClient client = new CoapClient(sensor.getResourceURI());
+            CoapClient client = new CoapClient(sensor.getNodeURI());
             CoapResponse response = client.post("state=" + state, MediaTypeRegistry.TEXT_PLAIN);
 		String code = response.getCode().toString();
 		if (!code.startsWith("2")) {
