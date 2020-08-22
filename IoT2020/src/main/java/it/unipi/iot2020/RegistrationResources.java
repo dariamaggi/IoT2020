@@ -7,8 +7,6 @@ package it.unipi.iot2020;
 
 import java.net.InetAddress;
 
-
-
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResource;
 import org.eclipse.californium.core.CoapResponse;
@@ -60,16 +58,16 @@ public class RegistrationResources extends CoapResource {
 					MainApp.dehumidifiers.add(dehumifierActuator);
                                 
 			} else if (path.contains("sens_temperature")){
-                                TemperatureSensor temperatureSensor= new TemperatureSensor(path, inetAddress.getHostAddress());
-                                if(!MainApp.temperatureSensors.contains(temperatureSensor)){ //adds
+                TemperatureSensor temperatureSensor= new TemperatureSensor(path, inetAddress.getHostAddress());
+                if(!MainApp.temperatureSensors.contains(temperatureSensor)){ //adds
 					MainApp.temperatureSensors.add(temperatureSensor);
 					observeTemperature(temperatureSensor);
+					}
 				}
-                        } else if (path.contains("act_temperature")){
-                                Cooling coolingActuator= new Cooling(path, inetAddress.getHostAddress());
-                                if(!MainApp.coolers.contains(coolingActuator)){ //adds
+			} else if (path.contains("act_temperature")){
+                Cooling coolingActuator= new Cooling(path, inetAddress.getHostAddress());
+                if(!MainApp.coolers.contains(coolingActuator)){ //adds
 					MainApp.coolers.add(coolingActuator);
-				}
                                 
    
 		}

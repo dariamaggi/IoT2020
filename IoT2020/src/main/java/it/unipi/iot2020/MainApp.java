@@ -18,7 +18,8 @@ import org.eclipse.californium.core.coap.MediaTypeRegistry;
  * @author dariamargheritamaggi
  */
 public class MainApp {
-        	public static final String[] commands = {"show resources","help","exit","start dehumidifier", "stop dehumidifier", "start cooling", "stop cooling"};
+        	public static final String[] commands = {"show resources","help","exit","start dehumidifier", "stop dehumidifier", "start cooling", "stop cooling",
+            "show humidity sensors", "show temperature sensors", "show dehumidifiers", "show cooling"};
         
 	public static ArrayList<CoapObserverHumidity> coapObserverHumidity = new ArrayList<CoapObserverHumidity>();
 	public static ArrayList<CoapObserverTemperature> coapObserverTemperature= new ArrayList<CoapObserverTemperature>();        
@@ -33,10 +34,9 @@ public class MainApp {
 		runServer();
 		while (true) {
 			try {
-                                 Scanner myObj = new Scanner(System.in);  
-                                 System.out.print("Enter command: ");
-
-                                 String userName = myObj.nextLine().toLowerCase();  
+                Scanner myObj = new Scanner(System.in);  
+                System.out.print("Enter command: ");
+                String userName = myObj.nextLine().toLowerCase();  
 
 				switch (userName) {
                                     case "show resources":
@@ -47,9 +47,24 @@ public class MainApp {
                                         listTemperatureSensors();
                                         listCoolingSystems();
                                         listDehumidifiers();
-                                        
-		                        break;
-                                        
+                                        break;
+
+                                    case "show humidity sensors":
+                                        listHumiditySensors();
+                                        break;    
+
+                                    case "show temperature sensors":
+                                        listTemperatureSensors();
+                                        break;
+                                    
+                                    case "show dehumidifiers":
+                                        listDehumidifiers();
+                                        break;
+
+                                    case "show cooling":
+                                        listCoolingSystems();
+                                        break;
+                            
                                     case "start cooling":
                                         listCoolingSystems();
                                         index=new Scanner(System.in).nextInt();
@@ -81,10 +96,10 @@ public class MainApp {
                                     case "start dehumidifier":
                                         listDehumidifiers();
                                         index=new Scanner(System.in).nextInt();
-                                        if (index>=0 && index<=dehumidifiers.size()){
-                                            Boolean status=dehumidifiers.get(index).checkActive();
+                                        if (index>=0 && index <= dehumidifiers.size()){
+                                            Boolean status = dehumidifiers.get(index).checkActive();
                                             if(!status){
-                                                Boolean result=changeDehumidifierStatus(dehumidifiers.get(index),"active",true);
+                                                Boolean result = changeDehumidifierStatus(dehumidifiers.get(index),"active",true);
                                                 System.out.println(result?"Cooling system activated":"Attention! Cooling system not activated");
                                             }
                                             else
@@ -94,8 +109,8 @@ public class MainApp {
 
                                     case "stop dehumidifier":
                                         listDehumidifiers();
-                                        index=new Scanner(System.in).nextInt();
-                                        if (index>=0 && index<=dehumidifiers.size()){
+                                        index = new Scanner(System.in).nextInt();
+                                        if (index >= 0 && inde x<= dehumidifiers.size()){
                                             Boolean status=dehumidifiers.get(index).checkActive();
                                             if(!status){
                                                 Boolean result=changeDehumidifierStatus(dehumidifiers.get(index),"non active",false);
@@ -109,9 +124,11 @@ public class MainApp {
                                     case "help":
                                         help();
                                         break;
+
                                     case "exit":
                                         System.exit(0);
                                         break;
+                                        
                                     default:
                                          System.out.println("Command not found.\n");
                                          help();
@@ -121,10 +138,11 @@ public class MainApp {
 			} catch (Exception e) {
 				System.out.println("Invalid input, please try again.\n");
 				e.printStackTrace();
-			}
-		}
+			    }
+		    }
                 
 		}
+        /*
         public static void selectResource(){
             while(true){
                 try{
@@ -151,21 +169,26 @@ public class MainApp {
 				e.printStackTrace();
 			}
             }
-        }
+        }*/
+
         public static void help() {
             System.out.println(".........................\n");
             System.out.println("");
 	    System.out.println("Type one of the following and press enter to continue:");
             System.out.println("");
             System.out.println("\t"+commands[0]+" - get resources present in the system");
-            System.out.println("\t"+commands[3]+" - start the dehumidifier (if not already active)");            
-            System.out.println("\t"+commands[4]+" - stop the dehumidifier (if not already idle)");
-            System.out.println("\t"+commands[5]+" - start the cooling system (if not already active)");            
-            System.out.println("\t"+commands[6]+" - stop the cooling system (if not already idle)");
-            System.out.println("\t"+commands[1]+" - see the available commands");
+            System.out.println("\t"+commands[7]+" - show humidity sensors present in the system");
+            System.out.println("\t"+commands[8]+" - show temperature sensors present in the system");
+            System.out.println("\t"+commands[9]+" - show dehumidifiers present in the system");
+            System.out.println("\t"+commands[10]+" - show cooling actuators present in the system");
+            System.out.println("\t"+commands[3]+" - start a dehumidifier (if not already active)");            
+            System.out.println("\t"+commands[4]+" - stop a dehumidifier (if not already idle)");
+            System.out.println("\t"+commands[5]+" - start a cooling system (if not already active)");            
+            System.out.println("\t"+commands[6]+" - stop a cooling system (if not already idle)");
+            System.out.println("\t"+commands[1]+" - show the available commands");
             System.out.println("\t"+commands[2]+" - exit the application");
             System.out.println("");
-	}
+	}/*
         public static void availableResources(){
             System.out.println("");
             System.out.println("humidity");
@@ -173,7 +196,7 @@ public class MainApp {
             System.out.println("or enter 'exit' to go back to main menu");
           
 
-        }
+        }*/
         public static void listHumiditySensors(){
             for (int i = 0; i < humiditySensors.size(); i++) {
                 HumiditySensor sensor = humiditySensors.get(i);
@@ -202,10 +225,11 @@ public class MainApp {
                 System.out.println(i + "\t\tCooling System: " + sensor.getAddress() + " "
                                                 + sensor.getPath() +" "+ status +"\n");
 
-        }
+                }
         
         
         	}
+
         public static Boolean changeCoolerStatus(Cooling sensor, String state, Boolean status){
             CoapClient client = new CoapClient(sensor.getResourceURI());
             CoapResponse response = client.post("state=" + state, MediaTypeRegistry.TEXT_PLAIN);
@@ -217,6 +241,7 @@ public class MainApp {
 		sensor.setActive(status);
                 return true;
         }
+
         public static Boolean changeDehumidifierStatus(Dehumidifier sensor, String state, Boolean status){
             CoapClient client = new CoapClient(sensor.getResourceURI());
             CoapResponse response = client.post("state=" + state, MediaTypeRegistry.TEXT_PLAIN);

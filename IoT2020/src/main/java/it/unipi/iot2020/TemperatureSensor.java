@@ -25,8 +25,8 @@ public class TemperatureSensor extends Node{
         
         public void addTemperatureValue(String currentTemperature){
             temperature.add(currentTemperature);
-            if (temperature.size()>2)
-                    temperature.remove(0);
+            if (temperature.size() > 2)
+                temperature.remove(0);
         }
         
         public Boolean gapDetected(Double newestValue){
