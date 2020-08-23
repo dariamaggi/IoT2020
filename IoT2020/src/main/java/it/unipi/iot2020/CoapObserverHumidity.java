@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 import org.eclipse.californium.core.CoapClient;
-	import org.eclipse.californium.core.CoapHandler;
+import org.eclipse.californium.core.CoapHandler;
 import org.eclipse.californium.core.CoapObserveRelation;
 import org.eclipse.californium.core.CoapResponse;
 import org.json.simple.JSONObject;
@@ -24,9 +24,9 @@ public class CoapObserverHumidity extends CoapClient {
     private HumiditySensor sensor;
     CoapObserveRelation coapObserveRelation;
     
-    public CoapObserverHumidity(HumiditySensor humidityResource) {
+    public CoapObserverHumidity(HumiditySensor humiditySensor) {
 		super(sensor.getNodeURI());  
-		this.sensor = humidityResource;
+		this.sensor = humiditySensor;
 	}
     public void startObserving() {
 		coapObserveRelation = this.observe(new CoapHandler () {
@@ -47,6 +47,11 @@ public class CoapObserverHumidity extends CoapClient {
 							
 							if (!dehumidifierInst.checkActive()) 
 								dehumidifierInst.setActive(true);							
+						} else if (numericValue < humidityThreshold) {
+							index = MainApp.humiditySensors.indexOf(sensor);
+							Dehumidifier dehumidifierInst = MainApp.dehumidifiers.get(index);
+							if (dehumidifierInst.checkActive()) 
+								dehumidifierInst.setActive(false);							
 						}
 	
 					} else {
@@ -69,7 +74,7 @@ public class CoapObserverHumidity extends CoapClient {
 			}
 		});
 	}
-    public HumiditySensor getHumidityResource() {
+    public HumiditySensor getHumidity() {
 		return sensor;
 	}
 
