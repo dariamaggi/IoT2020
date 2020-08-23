@@ -76,11 +76,11 @@ public class RegistrationResources extends CoapResource {
     
     }
     private static void observeHumidity(HumiditySensor humiditySensor) {
-		MainApp.coapObserverClients.add(new CoapObserverClient(humiditySensor));
+		MainApp.coapObserverClients.add(new CoapObserverHumidity(humiditySensor));
 		MainApp.coapObserverClients.get(MainApp.coapObserverClients.size() - 1).startObserving();
 	}
     private static void observeTemperature(TemperatureSensor temperatureSensor) {
-		MainApp.coapObserverClients.add(new CoapObserverClient(temperatureSensor));
+		MainApp.coapObserverClients.add(new CoapObserverTemperature(temperatureSensor));
 		MainApp.coapObserverClients.get(MainApp.coapObserverClients.size() - 1).startObserving();
 	}
 }
