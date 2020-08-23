@@ -19,6 +19,7 @@ public class Dehumidifier extends Node {
     public Boolean checkActive(){ //checks whether dehumidifier already working
         return this.isActive;
     }
+    
     public void setActive(Boolean isActive){
         this.isActive = isActive;
     }
