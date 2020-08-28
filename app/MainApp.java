@@ -27,7 +27,7 @@ public class MainApp {
     "help - show the available commands",
     "exit - exit the application"};
         
-	public static ArrayList<CoapObserverTemperature> coapObserverTemperature= new ArrayList<CoapObserverTemperature>();        
+	public static ArrayList<TemperatureObserver> coapObserverTemperature= new ArrayList<TemperatureObserver>();        
 	public static ArrayList<Thermostat> thermostats = new ArrayList<Thermostat>();
     public static ArrayList<Cooling> coolers = new ArrayList<Cooling>();
         
@@ -166,4 +166,5 @@ public class MainApp {
 			     }
 		      }.start();
 	       }
+        
         }

@@ -10,11 +10,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
-public class CoapObserverClient extends CoapClient {
+public class TemperatureObserver extends CoapClient {
 	private Thermostat sensor;
 	private CoapObserveRelation relation;
 
-	public CoapObserverClient(Thermostat sensor) {
+	public TemperatureObserver(Thermostat sensor) {
 		super(sensor.getURI());
 		this.sensor = sensor;
 	}
@@ -65,3 +65,14 @@ public class CoapObserverClient extends CoapClient {
 			}
 		});
 	}
+
+
+			public HumidityResource getHumidityResource() {
+				return humidityResource;
+			}
+
+			public void setHumidityResource(HumidityResource humidityResource) {
+				this.humidityResource = humidityResource;
+			};
+			
+		}
