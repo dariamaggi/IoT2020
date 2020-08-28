@@ -25,33 +25,21 @@ public class TemperatureObserver extends CoapClient {
 				try {
 					String value;
 					JSONObject jo = (JSONObject) JSONValue.parseWithException(reply.getResponseText());
-					Integer lowerThreshold = 10, upperThreshold = 30, index;
-	
+					Integer index;
+					Double upper = 23.0;
 					if (jo.containsKey("temperature")) {
 						value = jo.get("temperature").toString();
-						Integer numericValue = Integer.parseInt(value.trim());
-	
-						if (numericValue < lowerThreshold) {
-							index = MainApp.thermostats.indexOf(sensor);
-							Cooling cooler = MainApp.coolers.get(index);
-							Boolean state = cooler.getState();
-							if (!state)
-								cooler.setState(true);
+						Double sensedTemperature = Double.parseDouble(value.trim());
+						
+						if (sensedTemperature - Double.parseDouble(this.sensor.getLastValue() > 0.25){
+
 						}
-	
-						if (numericValue > upperThreshold) {
-							index = MainApp.thermostats.indexOf(sensor);
-							Cooling cooler = MainApp.coolers.get(index);
-							Boolean state = cooler.getState();
-							if (!state)
-								cooler.setState(false);
-						}
-	
+
+					
 					} else {
 						System.out.println("It wasn't possible to get the value.");
 						return;
 					}
-					System.out.println("TODO: add");
 					MainApp.thermostats.get(MainApp.thermostats.indexOf(sensor)).setLastValues(value);
 					
 	
@@ -65,14 +53,4 @@ public class TemperatureObserver extends CoapClient {
 			}
 		});
 	}
-
-
-			public HumidityResource getHumidityResource() {
-				return humidityResource;
-			}
-
-			public void setHumidityResource(HumidityResource humidityResource) {
-				this.humidityResource = humidityResource;
-			};
-			
-		}
+}
