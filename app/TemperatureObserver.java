@@ -32,7 +32,7 @@ public class TemperatureObserver extends CoapClient {
 						Double sensedTemperature = Double.parseDouble(value.trim());
 						
 						if (sensedTemperature - Double.parseDouble(this.sensor.getLastValue() > 0.25){
-
+							//TODO
 						}
 
 					

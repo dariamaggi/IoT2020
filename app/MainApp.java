@@ -50,7 +50,6 @@ public class MainApp {
                                         System.out.println("");
                                         System.out.println("Cooling Systems:");
                                         printResource(coolers);
-
                                         break;
 
                                     case "show temperature sensors":
@@ -196,7 +195,7 @@ public class MainApp {
 
             public void setShowVerticalLines(boolean showVerticalLines) {
                 verticalSep = showVerticalLines ? "|" : "";
-                joinSep = showVerticalLines ? "+" : " ";
+                joinSep = showVerticalLines ? "." : " ";
             }
 
             public void setHeaders(String... headers) {
