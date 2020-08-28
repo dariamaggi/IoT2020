@@ -32,17 +32,26 @@ public class TemperatureObserver extends CoapClient {
 						Double sensedTemperature = Double.parseDouble(value.trim());
 						
 						if (this.sensor.size() > 1){
-							if (sensedTemperature - Double.parseDouble(this.sensor.getLastValue() > 0.25){
-								
-						}
-						}
+							if (sensedTemperature - Double.parseDouble(this.sensor.getLastValue() > 0.25 || sensedTemperature > upper){
+								Cooling cooling = MainApp.cooler.get(MainApp.thermostats.indexOf(sensor));
+								if(!cooling.checkActive())
+									cooling.setActive(true):
+								else
+									System.out.println("Already in operation!");							
+							}else if (sensedTemperature  < lower){
+								Cooling cooling = MainApp.cooler.get(MainApp.thermostats.indexOf(sensor));
+								if(cooling.checkActive())
+									cooling.setActive(false):
+								else
+									System.out.println("Already idle!");
+							}
+							MainApp.thermostats.get(MainApp.thermostats.indexOf(sensor)).setLastValues(value);
 
 					
 					} else {
 						System.out.println("It wasn't possible to get the value.");
 						return;
 					}
-					MainApp.thermostats.get(MainApp.thermostats.indexOf(sensor)).setLastValues(value);
 					
 	
 				} catch (ParseException e) {
