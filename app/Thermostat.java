@@ -1,4 +1,4 @@
-package unipi.iot;
+package it.unipi.iot2020;
 
 
 public class Thermostat extends Sensor{

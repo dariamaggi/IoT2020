@@ -1,4 +1,4 @@
-package unipi.iot;
+package package it.unipi.iot2020;
 
 import java.util.ArrayList;
 
