@@ -26,13 +26,15 @@ public class TemperatureObserver extends CoapClient {
 					String value;
 					JSONObject jo = (JSONObject) JSONValue.parseWithException(reply.getResponseText());
 					Integer index;
-					Double upper = 23.0;
+					Double upper = 23.0, lower = 25.0;
 					if (jo.containsKey("temperature")) {
 						value = jo.get("temperature").toString();
 						Double sensedTemperature = Double.parseDouble(value.trim());
 						
-						if (sensedTemperature - Double.parseDouble(this.sensor.getLastValue() > 0.25){
-							//TODO
+						if (this.sensor.size() > 1){
+							if (sensedTemperature - Double.parseDouble(this.sensor.getLastValue() > 0.25){
+								
+						}
 						}
 
 					
