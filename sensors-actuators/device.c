@@ -18,8 +18,8 @@
 
 #define SERVER_EP "coap://[fd00::1]:5683"
 
-extern coap_resource_t res_irrigation;
-extern coap_resource_t res_humidity;
+extern coap_resource_t cooling;
+extern coap_resource_t thermostat;
 extern bool irrigation_state;
 bool registered = false;
 
@@ -53,8 +53,8 @@ PROCESS_THREAD(node_process, ev, data){
 
 	leds_set(LEDS_NUM_TO_MASK(LEDS_RED));	
 
-	coap_activate_resource(&res_irrigation, "res_irrigation");
-	coap_activate_resource(&res_humidity, "res_humidity");
+	coap_activate_resource(&cooling, "cooling");
+	coap_activate_resource(&thermostat, "thermostat");
 
 	coap_endpoint_parse(SERVER_EP, strlen(SERVER_EP), &server_ep);
 

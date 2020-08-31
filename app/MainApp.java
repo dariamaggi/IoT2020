@@ -141,14 +141,11 @@ public class MainApp {
         public printResource(ArrayList<String> list){
             CommandLineTable st = new CommandLineTable();            
             st.setShowVerticalLines(true);
-            
             st.setHeaders("Resource", "Address", "Path", "Status");//
-            
             for(int i = 0; i < list.size(); i++){
                 String elem = list.get(i);
                 st.addRow(elem.getAddress() , elem.getPath(), elem.checkActive()?"active":"idle");
             }
-
             st.print();
         }        
 
@@ -250,12 +247,12 @@ public class MainApp {
                     String verStrTemp = i == cells.length - 1 ? verticalSep : "";
                     if (rightAlign) {
                         System.out.printf("%s %" + maxWidths[i] + "s %s", verticalSep, s, verStrTemp);
-                    } else {
-                        System.out.printf("%s %-" + maxWidths[i] + "s %s", verticalSep, s, verStrTemp);
+                        } else {
+                            System.out.printf("%s %-" + maxWidths[i] + "s %s", verticalSep, s, verStrTemp);
+                        }
                     }
-                }
                 System.out.println();
-            }
+                }
             }
                 
         }

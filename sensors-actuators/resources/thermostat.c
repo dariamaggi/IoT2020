@@ -12,11 +12,11 @@
 #define LOG_MODULE "App"
 #define LOG_LEVEL LOG_LEVEL_DBG
 
-#define UPPER_THRESHOLD   20
+#define UPPER_THRESHOLD   25
 #define LOWER_THRESHOLD		22
 #define PERIODIC_HANDLER_INTERVAL 30
 
-static int current_temperature = 20;
+static double current_temperature = 23.5;
 extern bool cooling_active;
 static int count = 0;
 
@@ -24,15 +24,15 @@ static int count = 0;
 static void res_get_handler(coap_message_t *request, coap_message_t *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
 static void res_event_handler(void);
 
-int temperature_gap_generator(int lower, int upper) 
+double temperature_gap_generator(double lower, double upper) 
 { 
-  int gap = (rand() %  (upper - lower + 1)) + lower; 
+  double gap = (rand() %  (upper - lower + 1)) + lower; 
   return gap;
 } 
 
 
 EVENT_RESOURCE(thermostat,
-   "title=\"Painting local temperature\";obs;rt=\"Temperature Sensor\"",
+   "title=\"Local temperature\";obs;rt=\"Temperature Sensor\"",
    res_get_handler,
    NULL,
    NULL,
@@ -50,7 +50,7 @@ static void res_get_handler(coap_message_t *request, coap_message_t *response, u
     LOG_DBG("Observing handler: %d\n", count);
   }
   
-  current_temperature + = temperature_gap_generator(0, 1);
+  current_temperature = temperature_gap_generator(22, 30);
 
   if(current_temperature < LOWER_THRESHOLD){
     if(!cooling_active){
