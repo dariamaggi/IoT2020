@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package it.unipi.iot2020;
+package iot;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner; 
 
 import org.eclipse.californium.core.CoapClient;
@@ -83,7 +80,6 @@ public class MainApp {
                                         System.out.println("TODO: implement if time")
                                         /*
                                         listCoolingSystems();
-
                                         index=new Scanner(System.in).nextInt();
                                         if (index>=0 && index<=coolers.size()){
                                             Boolean status=coolers.get(index).checkActive();
@@ -124,15 +120,15 @@ public class MainApp {
             System.out.println("");
 	        System.out.println("Type one of the following and press enter to continue:");
             System.out.println("");
-            for(int i = 0; i < options.lenght(); i ++)
-                System.out.println(commands[i]);
+            for(int i = 0; i < options.length; i ++)
+                System.out.println(options[i]);
             System.out.println("");
 	}
         
 
         public static void listTemperatureSensors(){
             for (int i = 0; i < thermostats.size(); i++) {
-                TemperatureSensor sensor = thermostats.get(i);
+                Thermostat sensor = thermostats.get(i);
                 System.out.println(i + "\t\tTemperature Sensor: " + sensor.getAddress() + " " + sensor.getPath());
             }
 

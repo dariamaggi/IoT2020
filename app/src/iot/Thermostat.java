@@ -1,6 +1,6 @@
-package it.unipi.iot2020;
-import java.util.ArrayList;
+package iot;
 
+import java.util.ArrayList;
 
 public class Thermostat extends Sensor{
 	
@@ -10,9 +10,13 @@ public class Thermostat extends Sensor{
 	public Thermostat(String path, String address){
 		super(path, address);
 	}
+	public String getURI() {
+		return super.getURI();
+	}
+
 
 	public String getLastValue(){
-		return temperatureValues[temperatureValues.size() - 1];
+		return temperatureValues.get(temperatureValues.size() - 1);
 	}
 
 

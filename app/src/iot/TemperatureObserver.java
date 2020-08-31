@@ -1,4 +1,4 @@
-package package it.unipi.iot2020;
+package iot;
 
 import java.util.ArrayList;
 
@@ -32,16 +32,16 @@ public class TemperatureObserver extends CoapClient {
 						Double sensedTemperature = Double.parseDouble(value.trim());
 						
 						if (this.sensor.size() > 1){
-							if (sensedTemperature - Double.parseDouble(this.sensor.getLastValue() > 0.25 || sensedTemperature > upper){
-								Cooling cooling = MainApp.cooler.get(MainApp.thermostats.indexOf(sensor));
+							if (sensedTemperature - Double.parseDouble(this.sensor.getLastValue() > 0.25 || sensedTemperature > upper)){
+								Cooling cooling = MainApp.coolers.get(MainApp.thermostats.indexOf(sensor));
 								if(!cooling.checkActive())
-									cooling.setActive(true):
+									cooling.setActive(true);
 								else
 									System.out.println("Already in operation!");							
 							}else if (sensedTemperature  < lower){
-								Cooling cooling = MainApp.cooler.get(MainApp.thermostats.indexOf(sensor));
+								Cooling cooling = MainApp.coolers.get(MainApp.thermostats.indexOf(sensor));
 								if(cooling.checkActive())
-									cooling.setActive(false):
+									cooling.setActive(false);
 								else
 									System.out.println("Already idle!");
 							}

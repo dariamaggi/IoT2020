@@ -1,4 +1,4 @@
-package it.unipi.iot2020;
+package iot;
 
 public class Sensor {
 	private String path;
@@ -9,6 +9,8 @@ public class Sensor {
 		this.address = address;
 	}
 	
+	private Sensor() {}
+
 	public String getURI() {
 		return "coap://[" + this.address + "]:5683/" + this.path;
 	}
