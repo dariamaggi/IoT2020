@@ -22,20 +22,20 @@ public class MainApp {
 
 		while (true) {
 			try {
-				Integer selectedOperation = insertInputLine();
+				Integer command = insertInputLine();
 				Integer index, gap = null;
 
-				switch (selectedOperation) {
+				switch (command) {
 				case 0:
 					showResources();
 					break;
 				case 1:
 					if ((index = getNodeFromId()) != null)
-						changeIrrigationState("ON", coolers.get(index), true);
+						switchCooling("ON", coolers.get(index));
 					break;
 				case 2:
 					if ((index = getNodeFromId()) != null)
-						changeIrrigationState("OFF", coolers.get(index), false);
+						switchCooling("OFF", coolers.get(index));
 					break;
 				case 3:
 					showResourcesInformation();
@@ -43,15 +43,16 @@ public class MainApp {
 				case 4:
 					if ((index = getNodeFromId()) != null) {
 						String value = thermostats.get(index).getLastTemperatureValue();
-						System.out.println("Last temperature value registered: " + value);
+						System.out.println("Last temperature value registered by node "+ Integer.toString(index) + ": " + value);
 					}
 					break;
 				case 5:
 					if ((index = getNodeFromId()) != null)
 						gap = thermostats.get(index).getTemperatureGap();
-						if (gap!= null && gap > 2)
-							System.out.println("Attention! Gap detected in zone SHOW ZONE");
-							
+						if (gap != null)
+							System.out.println(gap > 2?"Cooling system should be activated":"Gap between safety range");
+						else
+							System.out.println("Not enough temperatures sensed yet by node "+Integer.toString(index));
 					
 					break;
 				case 6:
@@ -125,7 +126,7 @@ public class MainApp {
 			System.out.println(
 					+i + "\tThermostat: " + thermostat.getAddress() + " " + thermostat.getPath());
 			System.out.println(+i + "\tCooling System: " + cooler.getAddress() + " "
-					+ cooler.getPath() + Boolean.toString(cooler.getState())+"\n");
+					+ cooler.getPath() + Boolean.toString(cooler.getState())+ " "+"\n");
 		}
 	}
 
@@ -137,7 +138,7 @@ public class MainApp {
 		}
 	}
 
-	public static void changeIrrigationState(String state, Cooling cooler, Boolean value) {
+	public static void switchCooling(String state, Cooling cooler) {
 		CoapClient client = new CoapClient(cooler.getResourceURI());
 		CoapResponse response = client.post("state=" + state, MediaTypeRegistry.TEXT_PLAIN);
 		String code = response.getCode().toString();
@@ -145,7 +146,7 @@ public class MainApp {
 			System.out.println("Error: " + code);
 			return;
 		}
-		cooler.setState(value);
+		cooler.setState(cooler.getState());
 		System.out.println("Cooling system switched to: " + state);
 	}
 
