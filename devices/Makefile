@@ -10,6 +10,7 @@ MODULES_REL += $(TARGET)
 # Include CoAP resources
 MODULES_REL += ./resources
 
+
 # Include the CoAP implementation
 include $(CONTIKI)/Makefile.dir-variables
 MODULES += $(CONTIKI_NG_APP_LAYER_DIR)/coap
