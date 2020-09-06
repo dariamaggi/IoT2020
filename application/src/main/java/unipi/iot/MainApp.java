@@ -47,13 +47,13 @@ public class MainApp {
 					}
 					break;
 				case 5:
-					if ((index = getNodeFromId()) != null)
+					if ((index = getNodeFromId()) != null) {  
 						gap = thermostats.get(index).getTemperatureGap();
 						if (gap != null)
-							System.out.println(gap > 2?"Cooling system should be activated":"Gap between safety range");
+							System.out.println(gap > 2?"Cooling system should be activated":"Gap inside safety range");
 						else
 							System.out.println("Not enough temperatures sensed yet by node "+Integer.toString(index));
-					
+					}	
 					break;
 				case 6:
 					System.exit(0);
@@ -169,11 +169,10 @@ public class MainApp {
 		System.out.println("Available options:");
 		System.out.println("0-> show resources");
 		System.out.println("1-> start cooling system");
-		System.out.println("2-> stop cooling");
+		System.out.println("2-> stop cooling system");
 		System.out.println("3-> nodes status");
 		System.out.println("4-> show last registered temperature");
-		System.out.println("5-> show mean the gap");
-		System.out.println("6-> show zone");
-		System.out.println("7-> exit");
+		System.out.println("5-> show  the gap");
+		System.out.println("6-> exit");
 	}
 }
