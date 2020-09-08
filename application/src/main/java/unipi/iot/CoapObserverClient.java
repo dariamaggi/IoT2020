@@ -25,7 +25,7 @@ public class CoapObserverClient extends CoapClient {
 				try {
 					String value;
 					JSONObject jo = (JSONObject) JSONValue.parseWithException(response.getResponseText());
-					Integer lowerThreshold = 10, upperThreshold = 30, index;
+					Integer lowerThreshold = 22, upperThreshold = 30, index;
 	
 					if (jo.containsKey("temperature")) {
 						value = jo.get("temperature").toString();
@@ -35,7 +35,7 @@ public class CoapObserverClient extends CoapClient {
 							index = MainApp.thermostats.indexOf(thermostat);
 							Cooling cooler = MainApp.coolers.get(index);
 							Boolean state = cooler.getState();
-							if (!state)
+							if (state)
 								cooler.setState(false);
 						}
 	
@@ -43,7 +43,7 @@ public class CoapObserverClient extends CoapClient {
 							index = MainApp.thermostats.indexOf(thermostat);
 							Cooling cooler = MainApp.coolers.get(index);
 							Boolean state = cooler.getState();
-							if (state) 
+							if (!state) 
 								cooler.setState(true);							
 						}
 	

@@ -51,7 +51,7 @@ static void res_get_handler(coap_message_t *request, coap_message_t *response, u
   }
 
 
-  temperature_value = state ? generate_random_temperature(18, state) : generate_random_temperature(state, 32);
+  temperature_value = generate_random_temperature(18, 32);
 
 	if(temperature_value > UPPER_THRESHOLD){
 		if(!state){
