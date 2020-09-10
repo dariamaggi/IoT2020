@@ -86,10 +86,17 @@ public class MainApp {
 		System.out.println();
 		if (index == -1)
 			return null;
-		if (thermostats.size() > index)
-			return index;
+		if (index < thermostats.size()){
+			for (int i = 0; i< thermostats.size(); i++){
+				String temp = thermostats.get(i).getAddress();
+				if (String.parseInt(temp.charAt(temp.length()-1)) == index)
+					return index;
+			}
+		}
+			
 		System.out.println("The selected node does not exists.");
 		return null;
+		}
 	}
 
 	public static Integer insertInputLine() {
