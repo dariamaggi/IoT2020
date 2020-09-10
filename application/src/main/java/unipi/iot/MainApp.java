@@ -89,7 +89,7 @@ public class MainApp {
 		if (index < thermostats.size()){
 			for (int i = 0; i< thermostats.size(); i++){
 				String temp = thermostats.get(i).getAddress();
-				if (String.parseInt(temp.charAt(temp.length()-1)) == index)
+				if (Integer.parseInt(String.valueOf(temp.charAt(temp.length()-1))) == index)
 					return index;
 			}
 		}
@@ -97,7 +97,9 @@ public class MainApp {
 		System.out.println("The selected node does not exists.");
 		return null;
 		}
-	}
+	
+	
+	
 
 	public static Integer insertInputLine() {
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));

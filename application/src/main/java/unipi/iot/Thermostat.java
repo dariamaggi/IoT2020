@@ -14,7 +14,7 @@ public class Thermostat extends Resource {
 	}
 
 	public void setTemperatureValues(ArrayList<String> list) {
-		int valuesLimit = 3;
+		int valuesLimit = 2;
 		if (list.size() > valuesLimit)
 			list.remove(0);
 		this.temperatures = list;
