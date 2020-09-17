@@ -50,7 +50,7 @@ public class MainApp {
 					if ((index = getNodeFromId()) != null) {  
 						gap = thermostats.get(index).getTemperatureGap();
 						if (gap != null)
-							System.out.println(gap > 2?"Cooling system should be activated":"Gap inside safety range");
+							System.out.println(gap > 2?"Cooling system should be activated":"Increase inside safety range");
 						else
 							System.out.println("Not enough temperatures sensed yet by node "+Integer.toString(index));
 					}	
@@ -81,20 +81,20 @@ public class MainApp {
 	}
 
 	public static Integer getNodeFromId() {
-		System.out.print("Insert the node id: ");
-		Integer index = insertInputLine();
-		System.out.println();
-		if (index == -1)
-			return null;
-		if (index < thermostats.size()){
-			for (int i = 0; i< thermostats.size(); i++){
-				String temp = thermostats.get(i).getAddress();
-				if (Integer.parseInt(String.valueOf(temp.charAt(temp.length()-1))) == index)
-					return index;
+		if(thermostats.size()== 0)
+			System.out.println("No nodes registered yet! ");
+		else {
+			System.out.print("Insert the node id: ");
+			Integer index = insertInputLine();
+			System.out.println();
+			if (index == -1)
+				return null;
+			if (index < thermostats.size()){
+				return index;
 			}
-		}
-			
-		System.out.println("The selected node does not exists.");
+				
+			System.out.println("The selected node does not exists.");
+		} 
 		return null;
 		}
 	
@@ -115,28 +115,34 @@ public class MainApp {
 		}
 	}
 
-	public static boolean isNumeric(String strNum) {
-		if (strNum == null)
+	public static boolean isNumeric(String numToString) {
+		if (numToString == null)
 			return false;
 		try {
 			@SuppressWarnings("unused")
-			Integer number = Integer.parseInt(strNum);
-		} catch (NumberFormatException nfe) {
+			Integer number = Integer.parseInt(numToString);
+		} catch (NumberFormatException e) {
+			System.out.println("Attention! This is not a number");
 			return false;
 		}
 		return true;
 	}
 	
 	public static void showResources() {
-		System.out.println("List of the Resources in the system:");
-		for (int i = 0; i < thermostats.size(); i++) {
-			Thermostat thermostat = thermostats.get(i);
-			Cooling cooler = coolers.get(i);
-			System.out.println(
-					+i + "\tThermostat: " + thermostat.getAddress() + " " + thermostat.getPath());
-			System.out.println(+i + "\tCooling System: " + cooler.getAddress() + " "
-					+ cooler.getPath() + Boolean.toString(cooler.getState())+ " "+"\n");
-		}
+		if(thermostats.isEmpty())
+			System.out.println("No resources registered yet.");
+		else{
+			System.out.println("List of the Resources in the system:");
+			for (int i = 0; i < thermostats.size(); i++) {
+				Thermostat thermostat = thermostats.get(i);
+				Cooling cooler = coolers.get(i);
+				System.out.println(
+						+i + "\tThermostat: " + thermostat.getAddress() + " " + thermostat.getPath());
+				System.out.println(+i + "\tCooling System: " + cooler.getAddress() + " "
+						+ cooler.getPath() + " " + Boolean.toString(cooler.getState())+ " "+"\n");
+			}
+		} 
+			
 	}
 
 	public static void showResourcesInformation() {
